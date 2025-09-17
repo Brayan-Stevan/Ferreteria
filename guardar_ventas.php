@@ -15,20 +15,20 @@ try {
         $cantidad         = trim($_POST['cantidad']);
         $valor_unitario   = trim($_POST['valor_unitario']);
 
-        // Calcular valor total automáticamente
+        
         $valor_total = $cantidad * $valor_unitario;
 
-        // Insertar vendedor
+        
         $insertVendedor = $con->prepare("INSERT INTO vendedor (id_documento, nombre_vendedor) 
                                          VALUES (?, ?)");
         $insertVendedor->execute([$id_documento, $nombre_vendedor]);
 
-        // Insertar comprador
+       
         $insertComprador = $con->prepare("INSERT INTO comprador (id_comprador, nombre_comprador, telefono) 
                                           VALUES (?, ?, ?)");
         $insertComprador->execute([$id_comprador, $nombre_comprador, $telefono]);
 
-        // Insertar venta
+        
         $insertVenta = $con->prepare("INSERT INTO venta 
             (fecha_venta, nombre_material, cantidad, valor_unitario, valor_total, id_documento, id_comprador)
             VALUES (NOW(), ?, ?, ?, ?, ?, ?)");

@@ -108,7 +108,7 @@ $con = $db->conectar();
   <!-- Tabla de registros -->
   <div class="card shadow-sm mt-4">
             <div class="card-header bg-dark text-white">
-                Registros de Visitas
+                Registros de Ventas
             </div>
             <div class="card-body">
                 <table class="table table-hover table-bordered">
