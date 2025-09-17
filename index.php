@@ -90,7 +90,7 @@ $con = $db->conectar();
           Cargar Ventas desde Archivo CSV
         </div>
         <div class="card-body">
-          <form action="importar_csv.php" method="POST" enctype="multipart/form-data">
+          <form action="importar_scv.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="csv_file" class="form-label">Seleccionar archivo (.csv)</label>
               <input type="file" class="form-control" id="csv_file" name="csv_file" accept=".csv" required>
@@ -107,56 +107,21 @@ $con = $db->conectar();
 
   <!-- Tabla de registros -->
   <div class="card shadow-sm mt-4">
-    <div class="card-header bg-dark text-white">
-      Registros de Ventas
+            <div class="card-header bg-dark text-white">
+                Registros de Visitas
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-light">
+                        <form class="d-flex" role="search">
+                            <!-- <label for="caja_busqueda">Buscar: </label> -->
+                            <input class="form-control me-2" type="text" name="caja-busqueda" id="caja-busqueda" placeholder="Buscar" aria-label="Search">
+                        </form>
+                        <div id="datos"></div>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-
-      <!-- Barra de búsqueda -->
-      <form class="d-flex mb-3" role="search">
-        <input class="form-control me-2" type="text" id="caja-busqueda" placeholder="Buscar venta..." aria-label="Search">
-      </form>
-
-      <table class="table table-hover table-bordered">
-        <thead class="table-light">
-          <tr>
-            <th>#</th>
-            <th>Doc. Vendedor</th>
-            <th>Doc. Comprador</th>
-            <th>Material</th>
-            <th>Cantidad</th>
-            <th>Valor Unitario</th>
-            <th>Valor Total</th>
-            <th>Fecha Venta</th>
-          </tr>
-        </thead>
-        <tbody id="datos">
-          <!-- Ejemplo de datos de prueba -->
-          <tr>
-            <td>1</td>
-            <td>1001</td>
-            <td>2001</td>
-            <td>Cemento Gris</td>
-            <td>5</td>
-            <td>$35,000</td>
-            <td>$175,000</td>
-            <td>2025-09-17</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>1002</td>
-            <td>2002</td>
-            <td>Pintura Blanca</td>
-            <td>3</td>
-            <td>$25,000</td>
-            <td>$75,000</td>
-            <td>2025-09-17</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

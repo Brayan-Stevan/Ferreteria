@@ -33,33 +33,36 @@ foreach ($lineas as $linea) {
             $checkVend->execute();
 
             if ($checkVend->rowCount() == 0) {
-                $insertVend = $con->prepare("INSERT INTO vendedor (id_documento, nombre_vendedor) VALUES (?, ?)");
-                $insertVend->execute([$doc_vendedor, $nombre_vendedor]);
+                $insertVend = $con->prepare("INSERT INTO vendedor (id_documento, nombre_vendedor) 
+                VALUES ('$doc_vendedor','$nombre_vendedor')");
+                $insertVend->execute();
             } else {
-                $updateVend = $con->prepare("UPDATE vendedor SET nombre_vendedor=? WHERE id_documento=?");
-                $updateVend->execute([$nombre_vendedor, $doc_vendedor]);
+                $updateVend = $con->prepare("UPDATE vendedor SET nombre_vendedor = '" . $nombre_vendedor . "' WHERE id_documento = '" . $doc_vendedor . "'");
+                $updateVend->execute();
+
             }
         }
 
         // ===== COMPRADOR =====
         if (!empty($doc_comprador)) {
-            $checkComp = $con->prepare("SELECT id_comprador FROM comprador WHERE id_comprador=?");
-            $checkComp->execute([$doc_comprador]);
+            $checkComp = $con->prepare("SELECT id_comprador FROM comprador WHERE id_comprador= '" . $doc_comprador . "' ");
+            $checkComp->execute();
 
             if ($checkComp->rowCount() == 0) {
-                $insertComp = $con->prepare("INSERT INTO comprador (id_comprador, nombre_comprador, telefono) VALUES (?, ?, ?)");
-                $insertComp->execute([$doc_comprador, $nombre_comprador, $telefono]);
+                $insertComp = $con->prepare("INSERT INTO comprador (id_comprador, nombre_comprador, telefono) 
+                VALUES ('$doc_comprador','$nombre_comprador', '$telefono')");
+                $insertComp->execute();
             } else {
-                $updateComp = $con->prepare("UPDATE comprador SET nombre_comprador=?, telefono=? WHERE id_comprador=?");
-                $updateComp->execute([$nombre_comprador, $telefono, $doc_comprador]);
+                $updateComp = $con->prepare("UPDATE comprador SET nombre_comprador = '" . $nombre_comprador . "', telefono = '" . $telefono . "' WHERE id_comprador = '" . $doc_comprador . "'");
+                $updateComp->execute();
             }
         }
 
         // ===== VENTA =====
         if (!empty($doc_vendedor) && !empty($doc_comprador)) {
             $insertVenta = $con->prepare("INSERT INTO venta (fecha_venta, nombre_material, cantidad, valor_unitario, valor_total, id_documento, id_comprador)
-                                          VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $insertVenta->execute([$fecha_venta, $nombre_material, $cantidad, $valor_unitario, $valor_total, $doc_vendedor, $doc_comprador]);
+            VALUES ('$fecha_venta','$nombre_material', '$cantidad', '$valor_unitario','$valor_total', '$doc_vendedor', '$doc_comprador')");
+            $insertVenta->execute();
             $insertados++;
         }
     }
@@ -71,8 +74,13 @@ foreach ($lineas as $linea) {
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Proceso De Archivo CSV</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Proceso De Archivo SCV</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="../../controller/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 <div style="margin:20px; padding:15px; border-radius:5px; background:#d4edda; color:#155724; border:1px solid #c3e6cb;">
