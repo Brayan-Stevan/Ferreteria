@@ -98,7 +98,7 @@ $con = $db->conectar();
             <div class="d-grid">
               <button type="submit" class="btn btn-warning">Subir Archivo</button>
             </div>
-            <small class="text-muted">El archivo debe contener: documento_vendedor, documento_comprador, material, cantidad, valor_unitario, fecha.</small>
+            <small class="text-muted">El archivo debe contener: fecha_venta, nombre_material, cantidad, valor_unitario, doc_vendedor, nombre_vendedor, doc_comprador, nombre_comprador, telefono.</small>
           </form>
         </div>
       </div>
